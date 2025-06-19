@@ -11,6 +11,8 @@ final readonly class UpdateProductAction
 {
     /**
      * Execute the action.
+     *
+     * @param  array{name: string, description: string|null, price: float, currency_id: int, tax_cost: float, manufacturing_cost: float}  $data
      */
     public function handle(Product $product, array $data): Product
     {

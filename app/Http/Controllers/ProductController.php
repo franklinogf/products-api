@@ -11,14 +11,14 @@ use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
 use App\Models\Product;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Resources\Json\ResourceCollection;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 final class ProductController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index(): ResourceCollection
+    public function index(): JsonResource
     {
         $products = Product::with('baseCurrency')->paginate();
 
@@ -60,6 +60,9 @@ final class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product, UpdateProductAction $action): JsonResponse
     {
+        /**
+         * @var array{name: string, description: string|null, price: float, currency_id: int, tax_cost: float, manufacturing_cost: float} $validated
+         */
         $validated = $request->validated();
 
         $product = $action->handle($product, $validated);

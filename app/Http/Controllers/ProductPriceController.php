@@ -11,10 +11,12 @@ use Illuminate\Http\JsonResponse;
 
 final class ProductPriceController extends Controller
 {
-    public function index(Product $product)
+    public function index(Product $product): JsonResponse
     {
-        // Logic to retrieve product prices
-        return $product->prices->load('currency')->toResourceCollection();
+        return response()->json([
+            'success' => true,
+            'data' => $product->prices->load('currency')->toResourceCollection(),
+        ]);
     }
 
     public function store(StoreProductPriceRequest $request, Product $product, AddProductPriceAction $action): JsonResponse

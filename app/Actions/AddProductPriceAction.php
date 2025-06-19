@@ -10,6 +10,8 @@ final readonly class AddProductPriceAction
 {
     /**
      * Execute the action.
+     *
+     * @param  array{price: float, currency_id: int}  $data
      */
     public function handle(Product $product, array $data): Product
     {
