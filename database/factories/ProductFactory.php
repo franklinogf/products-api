@@ -23,7 +23,7 @@ final class ProductFactory extends Factory
             'name' => fake()->word(),
             'description' => fake()->sentence(),
             'price' => fake()->randomFloat(2, 10, 1000),
-            'currency_id' => Currency::factory(),
+            'currency_id' => fake()->randomElement(Currency::pluck('id')->toArray()),
             'tax_cost' => fake()->randomFloat(2, 1, 100),
             'manufacturing_cost' => fake()->randomFloat(2, 1, 500),
         ];

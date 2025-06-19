@@ -22,7 +22,7 @@ final class PriceFactory extends Factory
     {
         return [
             'product_id' => Product::factory(),
-            'currency_id' => Currency::factory(),
+            'currency_id' => fake()->randomElement(Currency::pluck('id')->toArray()),
             'price' => fake()->randomFloat(2, 10, 1000),
         ];
     }
