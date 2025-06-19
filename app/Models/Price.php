@@ -24,6 +24,12 @@ final class Price extends Model
     /** @use HasFactory<\Database\Factories\PriceFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'product_id',
+        'currency_id',
+        'price',
+    ];
+
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');

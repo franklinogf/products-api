@@ -1,17 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Requests;
 
+use App\Models\Currency;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
+use Illuminate\Validation\ValidationException;
 
-class StoreProductRequest extends FormRequest
+final class StoreProductRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +28,28 @@ class StoreProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name' => ['required', 'string', 'min:2', 'max:255'],
+            'description' => ['nullable', 'string', 'min:5', 'max:1000'],
+            'price' => ['required', 'numeric', 'min:1'],
+            'currency_id' => ['required', 'numeric', Rule::exists(Currency::class, 'id')],
+            'tax_cost' => ['required', 'numeric', 'min:0'],
+            'manufacturing_cost' => ['required', 'numeric', 'min:0'],
         ];
+    }
+
+    /**
+     * Handle a failed validation attempt.
+     *
+     * @throws ValidationException
+     */
+    public function failedValidation(Validator $validator): void
+    {
+        $response = response()->json([
+            'success' => false,
+            'message' => 'Validation failed',
+            'errors' => $validator->errors(),
+        ], 422);
+
+        throw new ValidationException($validator, $response);
     }
 }

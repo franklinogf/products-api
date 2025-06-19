@@ -10,7 +10,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use Illuminate\Validation\ValidationException;
 
-final class UpdateProductRequest extends FormRequest
+final class StoreProductPriceRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,12 +28,8 @@ final class UpdateProductRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'min:2', 'max:255'],
-            'description' => ['nullable', 'string', 'min:5', 'max:1000'],
             'price' => ['required', 'numeric', 'min:1'],
             'currency_id' => ['required', 'numeric', Rule::exists(Currency::class, 'id')],
-            'tax_cost' => ['required', 'numeric', 'min:0'],
-            'manufacturing_cost' => ['required', 'numeric', 'min:0'],
         ];
     }
 
