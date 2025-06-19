@@ -57,7 +57,7 @@ This API provides comprehensive endpoints for managing products in an e-commerce
 
 ### Currency
 - name: string
-- symbol: string (e.g., $)
+- symbol: string (e.g. $, €, £)
 - exchange_rate: decimal
 
 ## Security Sanctum Token
