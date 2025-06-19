@@ -105,6 +105,10 @@ php artisan serve
 You can import the provided Postman collection to test the API endpoints easily. The collection is available
 [here](https://github.com/franklinogf/products-api/blob/master/postman-collection.json).
 
+<small>The user credentials for testing is created after running the seeders:
+- Email: `test@example.com`
+- Password: `password`</small>
+
 ## Development
 
 This project uses several quality tools to maintain code standards:
