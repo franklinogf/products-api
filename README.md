@@ -65,6 +65,10 @@ This API provides comprehensive endpoints for managing products in an e-commerce
 - To access the API, you need to authenticate using Laravel Sanctum. You can obtain a token by logging in with valid user credentials. The route for obtaining a token is `/api/login`, which returns a token that must be included in the `Authorization` header for subsequent requests.
 - You can logout by calling the `/api/logout` endpoint, which will invalidate the token.
 
+<small>The user credentials for testing is created after running the seeders:
+- Email: `test@example.com`
+- Password: `password`</small>
+
 Example of using the token in a request header:
 ```http
 Authorization: Bearer YOUR_TOKEN_HERE
@@ -105,9 +109,6 @@ php artisan serve
 You can import the provided Postman collection to test the API endpoints easily. The collection is available
 [here](https://github.com/franklinogf/products-api/blob/master/postman-collection.json).
 
-<small>The user credentials for testing is created after running the seeders:
-- Email: `test@example.com`
-- Password: `password`</small>
 
 ## Development
 
