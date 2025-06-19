@@ -103,6 +103,10 @@ php artisan migrate --seed
 php artisan serve
 ```
 
+# Postman Collection
+You can import the provided Postman collection to test the API endpoints easily. The collection is available
+[here](https://github.com/franklinogf/products-api/Laravel%20products%20API.postman_collection.json).
+
 ## Development
 
 This project uses several quality tools to maintain code standards:
@@ -111,7 +115,7 @@ This project uses several quality tools to maintain code standards:
 - **Laravel Pint**: For code style enforcement
 - **Pest PHP**: For testing
 
-Run tests with:
+Run all tests with:
 ```bash
   composer run test
 ```
