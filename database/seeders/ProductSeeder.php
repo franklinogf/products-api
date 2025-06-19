@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
-use App\Models\Currency;
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 
@@ -18,7 +17,7 @@ final class ProductSeeder extends Seeder
         // Create a few products without additional prices
         Product::factory(5)->create();
 
-        // Create a few products with a specific currency and price
+        // Create a few products with a additional prices
         Product::factory(5)->hasPrices(2)->create();
     }
 }

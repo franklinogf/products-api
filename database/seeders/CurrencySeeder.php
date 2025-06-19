@@ -14,6 +14,7 @@ final class CurrencySeeder extends Seeder
      */
     public function run(): void
     {
+        // Create a few currencies with different exchange rates
         Currency::factory()->create([
             'name' => 'US Dollar',
             'symbol' => '$',

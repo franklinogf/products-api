@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Models\Product;
-use Illuminate\Support\Facades\DB;
 
 final readonly class CreateProductAction
 {
@@ -24,7 +23,6 @@ final readonly class CreateProductAction
             'tax_cost' => $data['tax_cost'],
             'manufacturing_cost' => $data['manufacturing_cost'],
         ]);
-        // return DB::transaction(function () use ($data): Product {
-        // });
+
     }
 }
