@@ -1,0 +1,263 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Laravel products API",
+        "description": "This is the API documentation for the Laravel application. It provides detailed information about the available endpoints, request parameters, and response formats.",
+        "version": "1.0.0"
+    },
+    "servers": [
+        {
+            "url": "https://prueba-api.test",
+            "description": "Production server"
+        },
+        {
+            "url": "http://prueba-api.test",
+            "description": "Staging server"
+        },
+        {
+            "url": "http://localhost:8000",
+            "description": "Local development server"
+        }
+    ],
+    "paths": {
+        "/api/login": {
+            "post": {
+                "summary": "Handle user login.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "email": "test@example.com",
+                                "password": "password"
+                            }
+                        }
+                    }
+                },
+                "security": [],
+                "responses": {
+                    "200": {
+                        "description": "User logged in successfully."
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "delete": {
+                "summary": "Handle user logout.",
+                "responses": {
+                    "200": {
+                        "description": "User logged out successfully."
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        },
+        "/api/products": {
+            "get": {
+                "summary": "Display a listing of the resource.",
+                "responses": {
+                    "200": {
+                        "description": "A list of products."
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Store a newly created resource in storage.",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "name": "New Product",
+                                "description": "Description of the new product.",
+                                "price": 26,
+                                "currency_id": 1,
+                                "tax_cost": 77,
+                                "manufacturing_cost": 8
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Product created successfully."
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/products/{id}": {
+            "get": {
+                "summary": "Display the specified resource.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The ID of the product."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product details."
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            },
+            "put": {
+                "summary": "Update the specified resource in storage.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The ID of the product."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product updated successfully."
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "name": "Updated Product Name",
+                                "description": "Updated description of the product.",
+                                "price": 26,
+                                "currency_id": 1,
+                                "tax_cost": 77,
+                                "manufacturing_cost": 8
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "summary": "Remove the specified resource from storage.",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The ID of the product."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Product deleted successfully."
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            }
+        },
+        "/api/products/{product_id}/prices": {
+            "get": {
+                "summary": "Get product prices.",
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The ID of the product."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A list of prices for the product."
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    }
+                }
+            },
+            "post": {
+                "summary": "Create a new price for a product.",
+                "parameters": [
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "description": "The ID of the product."
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "example": {
+                                "price": 16,
+                                "currency_id": 3
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Price created successfully."
+                    },
+                    "401": {
+                        "description": "Unauthenticated"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "bearerAuth": {
+                "type": "http",
+                "scheme": "bearer"
+            }
+        }
+    },
+    "security": [
+        {
+            "bearerAuth": []
+        }
+    ]
+}
