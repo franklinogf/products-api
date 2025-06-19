@@ -11,7 +11,6 @@ This API provides comprehensive endpoints for managing products in an e-commerce
 - Product management (CRUD operations)
 - Multiple currency support for product prices
 - Authentication using Laravel Sanctum
-- API resource versioning
 - Comprehensive validation
 - Detailed error handling
 
