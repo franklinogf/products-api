@@ -29,7 +29,7 @@ it('can list all prices for a product', function () {
         ]);
     }
 
-    $response = $this->getJson('/api/products/'.$this->product->id.'/prices');
+    $response = $this->getJson(route('products.prices.index', $this->product->id));
 
     $response->assertStatus(200)
         ->assertJson([
@@ -60,7 +60,7 @@ it('can add a price to a product', function () {
         'currency_id' => $newCurrency->id,
     ];
 
-    $response = $this->postJson("/api/products/{$this->product->id}/prices", $priceData);
+    $response = $this->postJson(route('products.prices.store', $this->product->id), $priceData);
 
     $response->assertStatus(201)
         ->assertJson([
@@ -88,14 +88,14 @@ it('can add a price to a product', function () {
 });
 
 it('validates price data', function () {
-    $response = $this->postJson("/api/products/{$this->product->id}/prices", []);
+    $response = $this->postJson(route('products.prices.store', $this->product->id), []);
 
     $response->assertStatus(422)
         ->assertJsonValidationErrors(['price', 'currency_id']);
 });
 
 it('returns 404 when product not found for prices', function () {
-    $response = $this->getJson('/api/products/999/prices');
+    $response = $this->getJson(route('products.prices.index', 999));
 
     $response->assertStatus(404);
 });

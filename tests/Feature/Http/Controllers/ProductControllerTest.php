@@ -18,7 +18,7 @@ it('can list all products', function () {
     // Create some products
     Product::factory()->count(3)->create();
 
-    $response = $this->getJson('/api/products');
+    $response = $this->getJson(route('products.index'));
 
     $response->assertStatus(200);
     $response->assertJsonCount(3, 'data');
@@ -51,7 +51,7 @@ it('can create a new product', function () {
         'manufacturing_cost' => 50.00,
     ];
 
-    $response = $this->postJson('/api/products', $productData);
+    $response = $this->postJson(route('products.index'), $productData);
 
     $response->assertStatus(201)
         ->assertJson([
@@ -84,7 +84,7 @@ it('can create a new product', function () {
 });
 
 it('validates product data', function () {
-    $response = $this->postJson('/api/products', []);
+    $response = $this->postJson(route('products.index'), []);
 
     $response->assertStatus(422)
         ->assertJsonValidationErrors(['name', 'price', 'currency_id']);
@@ -95,7 +95,7 @@ it('can show a specific product', function () {
         'currency_id' => $this->currency->id,
     ]);
 
-    $response = $this->getJson('/api/products/'.$product->id);
+    $response = $this->getJson(route('products.show', $product->id));
 
     $response->assertStatus(200)
         ->assertJson([
@@ -121,7 +121,7 @@ it('can update a product', function () {
         'manufacturing_cost' => 75.00,
     ];
 
-    $response = $this->putJson('/api/products/'.$product->id, $updatedData);
+    $response = $this->putJson(route('products.update', $product->id), $updatedData);
 
     $response->assertStatus(200)
         ->assertJson([
@@ -144,7 +144,7 @@ it('can update a product', function () {
 it('validates product update data', function () {
     $product = Product::factory()->create();
 
-    $response = $this->putJson('/api/products/'.$product->id, []);
+    $response = $this->putJson(route('products.update', $product->id), []);
 
     $response->assertStatus(422)
         ->assertJsonValidationErrors(['name', 'price', 'currency_id']);
@@ -153,7 +153,7 @@ it('validates product update data', function () {
 it('can delete a product', function () {
     $product = Product::factory()->create();
 
-    $response = $this->deleteJson('/api/products/'.$product->id);
+    $response = $this->deleteJson(route('products.destroy', $product->id));
 
     $response->assertStatus(200)
         ->assertJson([
@@ -167,7 +167,7 @@ it('can delete a product', function () {
 });
 
 it('returns 404 when product not found', function () {
-    $response = $this->getJson('/api/products/999');
+    $response = $this->getJson(route('products.show', 999));
 
     $response->assertStatus(404);
 });

@@ -13,7 +13,7 @@ beforeEach(function () {
 });
 
 it('can login with valid credentials', function () {
-    $response = $this->postJson('/api/login', [
+    $response = $this->postJson(route('login'), [
         'email' => 'test@example.com',
         'password' => 'password123',
     ]);
@@ -33,7 +33,7 @@ it('can login with valid credentials', function () {
 });
 
 it('rejects login with invalid credentials', function () {
-    $response = $this->postJson('/api/login', [
+    $response = $this->postJson(route('login'), [
         'email' => 'test@example.com',
         'password' => 'wrong-password',
     ]);
@@ -46,7 +46,7 @@ it('rejects login with invalid credentials', function () {
 });
 
 it('requires email and password to login', function () {
-    $response = $this->postJson('/api/login', []);
+    $response = $this->postJson(route('login'), []);
 
     $response->assertStatus(422)
         ->assertJsonValidationErrors(['email', 'password']);
@@ -55,7 +55,7 @@ it('requires email and password to login', function () {
 it('can logout successfully', function () {
     Sanctum::actingAs($this->user);
 
-    $response = $this->deleteJson('/api/logout');
+    $response = $this->deleteJson(route('logout'));
 
     $response->assertStatus(200)
         ->assertJson([
@@ -67,7 +67,7 @@ it('can logout successfully', function () {
 });
 
 it('requires authentication to logout', function () {
-    $response = $this->deleteJson('/api/logout');
+    $response = $this->deleteJson(route('logout'));
 
     $response->assertStatus(401);
 });
