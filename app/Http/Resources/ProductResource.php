@@ -26,7 +26,7 @@ final class ProductResource extends JsonResource
             'description' => $this->description,
             'price' => $this->price,
             'currencyId' => $this->currency_id,
-            'baseCurrency' => new CurrencyResource($this->baseCurrency),
+            'currency' => new CurrencyResource($this->currency),
             'taxCost' => $this->tax_cost,
             'manufacturingCost' => $this->manufacturing_cost,
             'createdAt' => $this->created_at->format('Y-m-d H:i:s'),

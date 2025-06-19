@@ -27,7 +27,7 @@ it('has the expected properties', function () {
 it('has the expected relationships', function () {
     $product = Product::factory()->hasPrices(3)->create()->fresh();
 
-    expect($product->baseCurrency)->toBeInstanceOf(Currency::class);
+    expect($product->currency)->toBeInstanceOf(Currency::class);
     expect($product->prices)->toBeInstanceOf(Collection::class);
     expect($product->prices->first())->toBeInstanceOf(Price::class);
 });

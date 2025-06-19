@@ -20,7 +20,7 @@ final class ProductController extends Controller
      */
     public function index(): JsonResource
     {
-        $products = Product::with('baseCurrency')->paginate();
+        $products = Product::with('currency')->paginate();
 
         return $products->toResourceCollection();
     }
@@ -40,7 +40,7 @@ final class ProductController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Product created successfully',
-            'data' => $product->load('baseCurrency')->toResource(),
+            'data' => $product->load('currency')->toResource(),
         ], 201);
     }
 
@@ -51,7 +51,7 @@ final class ProductController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data' => $product->load('baseCurrency')->toResource(),
+            'data' => $product->load('currency')->toResource(),
         ]);
     }
 
@@ -70,7 +70,7 @@ final class ProductController extends Controller
         return response()->json([
             'success' => true,
             'message' => 'Product updated successfully',
-            'data' => $product->load('baseCurrency')->toResource(),
+            'data' => $product->load('currency')->toResource(),
         ]);
     }
 

@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  * @property-read float $manufacturing_cost
  * @property-read CarbonImmutable $created_at
  * @property-read CarbonImmutable $updated_at
- * @property-read Currency $baseCurrency
+ * @property-read Currency $currency
  * @property-read Collection<Price> $prices
  */
 final class Product extends Model
@@ -38,7 +38,7 @@ final class Product extends Model
         'manufacturing_cost',
     ];
 
-    public function baseCurrency(): BelongsTo
+    public function currency(): BelongsTo
     {
         return $this->belongsTo(Currency::class, 'currency_id', 'id');
     }
