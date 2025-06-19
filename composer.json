@@ -1,16 +1,20 @@
 {
     "$schema": "https://getcomposer.org/schema.json",
-    "name": "laravel/laravel",
+    "name": "franklinogf/products",
     "type": "project",
-    "description": "The skeleton application for the Laravel framework.",
+    "description": "A Laravel API for managing products",
     "keywords": [
         "laravel",
-        "framework"
+        "api",
+        "products",
+        "ecommerce",
+        "restful"
     ],
     "license": "MIT",
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
+        "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.10.1",
         "nunomaduro/essentials": "0.1"
     },
