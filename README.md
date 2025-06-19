@@ -109,6 +109,8 @@ php artisan serve
 You can import the provided Postman collection to test the API endpoints easily. The collection is available
 [here](https://github.com/franklinogf/products-api/blob/master/postman-collection.json).
 
+## Swagger Documentation
+API documentation is available via Swagger. You can access it at `/docs` after starting the server.
 
 ## Development
 
